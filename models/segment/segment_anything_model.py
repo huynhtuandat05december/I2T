@@ -1,16 +1,17 @@
 import cv2
 from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 from utils.helper import resize_long_edge_cv2
+import os
 
 class SegmentAnything:
     def __init__(self, device, arch="vit_b"):
         self.device = device
         if arch=='vit_b':
-            pretrained_weights="./pretrained_models/sam_vit_b_01ec64.pth"
+            pretrained_weights=os.path.abspath("models/segment/pretrained_models/sam_vit_b_01ec64.pth")
         elif arch=='vit_l':
-            pretrained_weights="./pretrained_models/sam_vit_l_0e2f7b.pth"
+            pretrained_weights=os.path.abspath("models/segment/pretrained_models/sam_vit_l_0e2f7b.pth")
         elif arch=='vit_h':
-            pretrained_weights="./pretrained_models/sam_vit_h_0e2f7b.pth"
+            pretrained_weights=os.path.abspath("models/segment/pretrained_models/sam_vit_h_0e2f7b.pth")
         else:
             raise ValueError(f"arch {arch} not supported")
         self.model = self.initialize_model(arch, pretrained_weights)
