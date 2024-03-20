@@ -31,6 +31,7 @@ class ImageCaptioning:
 
     def image_caption(self, image_src):
         image = Image.open(image_src)
+        print(image.size)
         image = resize_long_edge(image, 384)
         inputs = self.processor(images=image, return_tensors="pt").to(self.device, self.data_type)
         generated_ids = self.model.generate(**inputs)
