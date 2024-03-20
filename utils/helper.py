@@ -1,5 +1,6 @@
 import cv2
 import torch
+from PIL import Image
 
 def resize_long_edge_cv2(image, target_size=384):
     height, width = image.shape[:2]
