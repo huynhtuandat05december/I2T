@@ -18,12 +18,12 @@ class ImageCaptioning:
         if self.captioner_base_model == 'blip2':
             processor = Blip2Processor.from_pretrained("Salesforce/blip2-opt-2.7b")
             model = Blip2ForConditionalGeneration.from_pretrained(
-                "Salesforce/blip2-opt-2.7b", torch_dtype=self.data_type
+                "Salesforce/blip2-opt-2.7b",load_in_8bit=True, device_map={"": 0}, torch_dtype=self.data_type
             )
         # for gpu with small memory
         elif self.captioner_base_model == 'blip':
             processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-            model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", torch_dtype=self.data_type)
+            model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base", load_in_8bit=True, device_map={"": 0}, torch_dtype=self.data_type)
         else:
             raise ValueError('arch not supported')
         model.to(self.device)
