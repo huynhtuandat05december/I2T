@@ -5,6 +5,6 @@ from utils.helper import get_device
 if __name__ == '__main__':
     device = get_device()
     image_caption_model = ImageCaptioning(device=device)
-    model = SemanticSegementAnything(device=device, image_caption_model=image_caption_model)
+    model = SemanticSegementAnything( image_caption_model=image_caption_model)
     result = model.generate_mask("examples/3.jpg")
     print(result)
