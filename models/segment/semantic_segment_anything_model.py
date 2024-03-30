@@ -15,7 +15,7 @@ class SemanticSegementAnything:
 
     def region_classify_w_blip2(self, images):
         inputs = self.image_caption_model.processor(images=images, return_tensors="pt").to(self.device, self.data_type)
-        generated_ids = self.image_caption_model.model.generate(**inputs)
+        generated_ids = self.image_caption_model.model.generate(**inputs, max_new_tokens=100)
         generated_texts = self.image_caption_model.processor.batch_decode(generated_ids, skip_special_tokens=True)
         return [text.strip() for text in generated_texts]
 
