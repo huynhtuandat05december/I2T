@@ -1,4 +1,4 @@
-from models.bilp_model import ImageCaptioning
+from models.blip_model import ImageCaptioning
 from utils.helper import get_device
 
 if __name__ == '__main__':

@@ -7,5 +7,5 @@ git checkout cc87e7ec
 pip install -e .
  
 cd /content/I2T
-pip install -r requirements.txt
 pip install -r requirements_GRiT.txt
+pip install -r requirements.txt
