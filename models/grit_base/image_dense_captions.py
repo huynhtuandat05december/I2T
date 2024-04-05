@@ -12,7 +12,7 @@ from detectron2.utils.logger import setup_logger
 
 sys.path.insert(0, 'models/grit_base/third_party/CenterNet2/projects/CenterNet2/')
 from centernet.config import add_centernet_config
-from models.grit_src.grit.config import add_grit_config
+from models.grit_base.grit.config import add_grit_config
 
 from models.grit_base.grit.config import VisualizationDemo
 import json
