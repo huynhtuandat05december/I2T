@@ -1,6 +1,6 @@
 import argparse
 from models.image2paragraph import ImageTextTransformation
-from utils.util import display_images_and_text
+from utils.helper import display_images_and_text
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
