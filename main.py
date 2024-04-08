@@ -1,5 +1,5 @@
 import argparse
-from models.image_text_transformation import ImageTextTransformation
+from models.image2paragraph import ImageTextTransformation
 from utils.util import display_images_and_text
 
 if __name__ == '__main__':
