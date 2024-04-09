@@ -18,7 +18,7 @@ class ImageToText:
         No more than 7 sentences.
         Only use one paragraph.
         Describe position of each object.
-        Do not appear number.
+        Do not appear number and size of image.
         """
         template = f"{prompt_prefix_1}{prompt_prefix_2}{{width}}X{{height}}{prompt_prefix_3}{{caption}}{prompt_prefix_4}{{dense_caption}}{prompt_prefix_5}{{region_semantic}}{prompt_suffix}"
         return template
@@ -26,15 +26,15 @@ class ImageToText:
     def paragraph_summary_with_gpt(self, caption, dense_caption, region_semantic, width, height):
         question = self.template.format(width=width, height=height, caption=caption, dense_caption=dense_caption, region_semantic=region_semantic)
         print('\033[1;35m' + '*' * 100 + '\033[0m')
-        print('\nStep4, Paragraph Summary with GPT-3:')
+        print('\nStep4, Paragraph Summary with GPT-3.5:')
         print('\033[1;34m' + "Question:".ljust(10) + '\033[1;36m' + question + '\033[0m')
-        completion = openai.ChatCompletion.create(
+        completion = openai.chat.completions.create(
             model=self.gpt_version, 
             messages = [
             {"role": "user", "content" : question}]
         )
 
-        print('\033[1;34m' + "ChatGPT Response:".ljust(18) + '\033[1;32m' + completion['choices'][0]['message']['content'] + '\033[0m')
+        print('\033[1;34m' + "ChatGPT Response:".ljust(18) + '\033[1;32m' + completion.choices[0].message.content + '\033[0m')
         print('\033[1;35m' + '*' * 100 + '\033[0m')
-        return completion['choices'][0]['message']['content']
+        return completion.choices[0].message.content
 

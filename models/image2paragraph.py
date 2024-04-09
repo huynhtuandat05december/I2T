@@ -26,7 +26,6 @@ class ImageTextTransformation:
     def init_models(self):
         openai_key = os.environ['OPENAI_KEY']
         print(self.args)
-        print('\033[1;34m' + "Welcome to the Image2Paragraph toolbox...".center(50, '-') + '\033[0m')
         print('\033[1;33m' + "Initializing models...".center(50, '-') + '\033[0m')
         print('\033[1;31m' + "This is time-consuming, please wait...".center(50, '-') + '\033[0m')
         self.image_caption_model = ImageCaptioning(device=self.args.image_caption_device, captioner_base_model=self.args.captioner_base_model)

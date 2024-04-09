@@ -13,15 +13,8 @@ class RegionSemantic():
         self.region_classify_model = SemanticSegementAnything(image_caption_model=self.image_caption_model)
         
     def semantic_prompt_gen(self, anns, topk=5):
-        """
-        fliter too small objects and objects with low stability score
-        anns: [{'class_name': 'person', 'bbox': [0.0, 0.0, 0.0, 0.0], 'size': [0, 0], 'stability_score': 0.0}, ...]
-        semantic_prompt: "person: [0.0, 0.0, 0.0, 0.0]; ..."
-        """
-        # Sort annotations by area in descending order
         sorted_annotations = sorted(anns, key=lambda x: x['area'], reverse=True)
         anns_len = len(sorted_annotations)
-        # Select the top 10 largest regions
         top_10_largest_regions = sorted_annotations[:min(anns_len, topk)]
         semantic_prompt = ""
         for region in top_10_largest_regions:
